@@ -26,11 +26,7 @@
         <dispatcher task-executor="executor"/>
     </channel>
 
-    <jms:outbound-gateway request-channel="cachePublisherChannel"
+    <jms:outbound-channel-adapter channel="cachePublisherChannel"
                           connection-factory="connectionFactory"
-                          request-destination="publishDestination"
-                          reply-timeout="0"
-                          requires-reply="false">
-        <jms:reply-listener/>
-    </jms:outbound-gateway>
+                                  destination="publishDestination"/>
 </beans:beans>

@@ -35,7 +35,7 @@ public class PublisherApp
 
         Random r = new Random();
         String[] environments = new String[]{"DEV", "UAT", "PROD", "DR"};
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 50000; ++i) {
             publisher.publish(new Alert(i, "test" + i, "localhost", environments[r.nextInt(4)], r.nextInt(2), "myView" + i % 10));
         }
     }
