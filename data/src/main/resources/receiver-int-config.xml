@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:jms="http://www.springframework.org/schema/integration/jms"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                  http://www.springframework.org/schema/beans/spring-beans.xsd
+                  http://www.springframework.org/schema/integration
+                  http://www.springframework.org/schema/integration/spring-integration.xsd
+                  http://www.springframework.org/schema/integration/jms
+                  http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd">
+
+    <!-- For configuring integration layer of cache receiver -->
+
+    <logging-channel-adapter id="logger" level="TRACE"/>
+
+    <jms:message-driven-channel-adapter connection-factory="connectionFactory"
+                                        destination="publishDestination"
+                                        channel="cacheUpdates"/>
+
+    <publish-subscribe-channel id="cacheUpdates">
+        <interceptors>
+            <wire-tap channel="logger"/>
+        </interceptors>
+    </publish-subscribe-channel>
+
+    <payload-type-router input-channel="cacheUpdates">
+        <mapping channel="alertsChannel" type="poc.data.domain.Alert"/>
+    </payload-type-router>
+
+    <channel id="alertsChannel"/>
+
+    <beans:bean id="alertsStore" factory-bean="hazelcastStoreManager" factory-method="getStore">
+        <beans:constructor-arg value="Alert"/>
+    </beans:bean>
+
+    <service-activator id="alertsSaver" input-channel="alertsChannel"
+                       expression="@alertsStore.put(headers.id, payload)"/>
+</beans:beans>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:jms="http://www.springframework.org/schema/integration/jms"
+             xmlns:task="http://www.springframework.org/schema/task"
+             xmlns="http://www.springframework.org/schema/integration"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                  http://www.springframework.org/schema/beans/spring-beans.xsd
+                  http://www.springframework.org/schema/integration/jms
+                  http://www.springframework.org/schema/integration/jms/spring-integration-jms.xsd
+                  http://www.springframework.org/schema/integration
+                  http://www.springframework.org/schema/integration/spring-integration.xsd
+                  http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!-- For configuring integration layer of cache publisher -->
+
+    <gateway id="integrationCachePublisher"
+             default-request-channel="cachePublisherChannel"
+             service-interface="poc.data.publisher.service.IntegrationCachePublisher"
+             default-reply-timeout="0">
+        <method name="publish"/>
+    </gateway>
+
+    <task:executor id="executor" pool-size="10" rejection-policy="CALLER_RUNS"/>
+    <channel id="cachePublisherChannel">
+        <dispatcher task-executor="executor"/>
+    </channel>
+
+    <jms:outbound-gateway request-channel="cachePublisherChannel"
+                          connection-factory="connectionFactory"
+                          request-destination="publishDestination"
+                          reply-timeout="0"
+                          requires-reply="false">
+        <jms:reply-listener/>
+    </jms:outbound-gateway>
+</beans:beans>
