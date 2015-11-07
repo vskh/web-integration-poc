@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 import poc.data.api.config.RESTConfig;
 
@@ -13,8 +14,8 @@ import poc.data.api.config.RESTConfig;
  * @author vadya
  */
 @Configuration
-//@EnableWebMvc
-@Import({RESTConfig.class})
+@EnableWebMvc
+@Import({RESTConfig.class, SpringActuatorConfig.class})
 public class WebConfig extends DelegatingWebMvcConfiguration {
 
     @Override
