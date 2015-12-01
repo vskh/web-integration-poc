@@ -21,7 +21,7 @@
         <method name="publish"/>
     </gateway>
 
-    <task:executor id="executor" pool-size="10" rejection-policy="CALLER_RUNS"/>
+    <task:executor id="executor" pool-size="10" queue-capacity="1000" rejection-policy="DISCARD"/>
     <channel id="cachePublisherChannel">
         <dispatcher task-executor="executor"/>
     </channel>

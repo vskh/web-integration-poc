@@ -9,7 +9,7 @@
         <Root level="error">
             <AppenderRef ref="Console" />
         </Root>
-        <Logger name="org.springframework" level="trace" additivity="false">
+        <Logger name="org.springframework" level="debug" additivity="false">
             <AppenderRef ref="Console" />
         </Logger>
     </Loggers>
