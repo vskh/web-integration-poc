@@ -15,7 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j.version>1.7.10</slf4j.version>
-        <log4j.version>2.13.2</log4j.version>
+        <log4j.version>2.17.1</log4j.version>
         <spring.version>4.1.6.RELEASE</spring.version>
         <spring-integration.version>4.1.5.RELEASE</spring-integration.version>
         <hazelcast.version>3.4.2</hazelcast.version>
