@@ -41,7 +41,7 @@ public class SpringActuatorConfig {
     @Bean
     public WebEndpointProperties webEndpointProperties() {
         WebEndpointProperties properties = new WebEndpointProperties();
-        properties.getExposure().setInclude(Set.of("*"));
+        properties.getExposure().setInclude(Set.of("health", "info", "beans", "mappings", "metrics", "env"));
         return properties;
     }
 }
