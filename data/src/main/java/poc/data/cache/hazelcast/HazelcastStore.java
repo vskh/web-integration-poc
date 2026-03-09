@@ -1,6 +1,6 @@
 package poc.data.cache.hazelcast;
 
-import com.hazelcast.core.IMap;
+import com.hazelcast.map.IMap;
 import com.hazelcast.query.Predicate;
 import poc.data.cache.Store;
 import poc.data.cache.StoreManager;

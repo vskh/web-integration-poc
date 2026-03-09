@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.Topic;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.Topic;
 
 /**
  * AppConfig <Description>
