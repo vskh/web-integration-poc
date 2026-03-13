@@ -1,6 +1,6 @@
 package poc.data.cache.hazelcast;
 
-import com.hazelcast.query.SqlPredicate;
+import com.hazelcast.query.Predicates;
 import poc.data.cache.StoreQuery;
 import poc.data.cache.StoreQueryFactory;
 
@@ -12,6 +12,6 @@ import poc.data.cache.StoreQueryFactory;
 public class HazelcastStoreQueryFactory extends StoreQueryFactory {
     @Override
     public <K, V> StoreQuery<K, V> fromString(String s) {
-        return new HazelcastStoreQuery<K, V>(new SqlPredicate(s));
+        return new HazelcastStoreQuery<K, V>(Predicates.sql(s));
     }
 }

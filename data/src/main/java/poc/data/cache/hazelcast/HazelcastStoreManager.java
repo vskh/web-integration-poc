@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import poc.data.cache.Store;
 import poc.data.cache.StoreManager;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.Collection;
 
 /**

@@ -23,10 +23,10 @@
 
             <hz:map name="Alert" in-memory-format="OBJECT">
                 <hz:indexes>
-                    <hz:index attribute="text"/>
-                    <hz:index attribute="source"/>
-                    <hz:index attribute="environment"/>
-                    <hz:index attribute="view"/>
+                    <hz:index attribute="text" type="HASH"/>
+                    <hz:index attribute="source" type="HASH"/>
+                    <hz:index attribute="environment" type="HASH"/>
+                    <hz:index attribute="view" type="HASH"/>
                 </hz:indexes>
             </hz:map>
         </hz:config>

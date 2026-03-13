@@ -1,11 +1,11 @@
 package poc.web.config;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.util.UrlPathHelper;
 import poc.data.api.config.RESTConfig;
 
 /**
@@ -16,13 +16,12 @@ import poc.data.api.config.RESTConfig;
 @Configuration
 @EnableWebMvc
 @Import({RESTConfig.class, SpringActuatorConfig.class})
-public class WebConfig extends DelegatingWebMvcConfiguration {
+public class WebConfig implements WebMvcConfigurer {
 
     @Override
-    @Bean
-    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-        RequestMappingHandlerMapping mapping = super.requestMappingHandlerMapping();
-        mapping.setRemoveSemicolonContent(false);
-        return mapping;
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        urlPathHelper.setRemoveSemicolonContent(false);
+        configurer.setUrlPathHelper(urlPathHelper);
     }
 }
