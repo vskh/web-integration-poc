@@ -14,7 +14,7 @@
 
     <properties>
         <spring-integration.version>6.4.10</spring-integration.version>
-        <log4j.version>2.25.3</log4j.version>
+        <log4j.version>2.25.4</log4j.version>
     </properties>
 
     <dependencies>
